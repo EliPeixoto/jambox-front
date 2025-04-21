@@ -8,5 +8,10 @@ const keycloakService = new KeycloakInitService();
 
 keycloakService.init().then(() => {
   platformBrowserDynamic().bootstrapModule(AppModule)
-    .catch(err => console.error(err));
+    .then(() => {
+      const currentUrl = window.location.pathname;
+      if (currentUrl === '/' || currentUrl === '/index.html') {
+        window.location.href = '/dashboard';
+      }
+    });
 });
