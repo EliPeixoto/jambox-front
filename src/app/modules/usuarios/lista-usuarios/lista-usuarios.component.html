@@ -14,8 +14,8 @@
       <input matInput [(ngModel)]="filtros.cpf" placeholder="Filtrar por CPF">
     </mat-form-field>
   
-    <button mat-raised-button color="primary" (click)="filtrar()">Filtrar</button>
-    <button mat-raised-button color="accent" (click)="irParaCadastro()">Novo Cadastro</button>
+    <button class="botao-filtro" mat-raised-button color="primary" (click)="filtrar()">Filtrar</button>
+    <button class="botao-novo" mat-raised-button color="secundary" (click)="irParaCadastro()">Novo Cadastro</button>
   </div>
   
   <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">

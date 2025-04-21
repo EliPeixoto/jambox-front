@@ -1,0 +1,18 @@
+.filtro-container{
+    margin-top: 3%;
+    margin-left: 3%;
+}
+
+.botao-filtro{
+    margin: 3%;
+    background-color: rgb(236, 159, 65)!important;
+}
+.botao-novo{
+    background-color: rgb(34, 173, 106)!important;
+    ::ng-deep span {
+        color: azure !important;
+      }
+}
+mat-form-field{
+    margin:0.5%;
+}
