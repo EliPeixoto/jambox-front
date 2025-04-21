@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
 
 const routes: Routes = [
-  {
-    path: '', 
-    component: CadastroUsuarioComponent
-  }
+  { path: '', component: ListaUsuariosComponent },
+  { path: 'novo', component: CadastroUsuarioComponent }
 ];
 
 @NgModule({

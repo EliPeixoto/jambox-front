@@ -18,4 +18,14 @@ export class UsuarioService {
   cadastrar(usuario: Usuario): Observable<Usuario> {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
+
+  buscarComFiltros(nome?: string, email?: string, cpf?: string): Observable<Usuario[]> {
+    const params: any = {};
+    if (nome) params.nome = nome;
+    if (email) params.email = email;
+    if (cpf) params.cpf = cpf;
+  
+    return this.http.get<Usuario[]>(`${this.apiUrl}/buscar`, { params });
+  }
+  
 }

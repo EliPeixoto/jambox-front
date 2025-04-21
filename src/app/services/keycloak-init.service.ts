@@ -16,10 +16,17 @@ export class KeycloakInitService {
 
     return this.keycloak.init({
       onLoad: 'login-required',
-      checkLoginIframe: false
+      checkLoginIframe: false,
+      redirectUri: window.location.origin,
+      pkceMethod: 'S256' 
     }).then(authenticated => {
-      localStorage.setItem('token', this.keycloak.token!);
+      if (authenticated && this.keycloak.token) {
+        localStorage.setItem('token', this.keycloak.token);
+      }
       return authenticated;
+    }).catch(err => {
+      console.error('[Keycloak] Erro ao inicializar', err);
+      return false;
     });
   }
 
