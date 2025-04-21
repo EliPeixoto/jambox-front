@@ -1,16 +1,11 @@
-.layout-container {
-    height: 100vh;
-  }
-  
-  mat-sidenav {
-    width: 220px;
-    background-color: #8625ec; /* igual ao sidebar */
-    color: white;
-  }
-  
-  mat-sidenav-content {
-    background-color: #f4f6fa;
-    padding: 24px;
-    font-family: 'Roboto', sans-serif;
-  }
-  
+mat-sidenav-container {
+  height: 100vh;
+  overflow: hidden;
+}
+
+mat-sidenav {
+  width: 220px;
+  background-color: #0c40af;
+  color: white;
+  overflow: hidden;
+}
