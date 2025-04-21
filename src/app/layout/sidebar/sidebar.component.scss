@@ -1,22 +1,10 @@
 :host {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 80%;
   background-color: #0c40af;
   color: white;
   font-family: 'Roboto', sans-serif;
-
-  // Removido overflow: hidden para permitir animações com scale
-  // overflow: hidden;
-}
-
-.logo {
-  margin-bottom: 16px;
-  padding-left: 10px;
-  padding-right: 10px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
 }
 
 .jambox-logo {
@@ -27,7 +15,6 @@
   margin-left: 20%;
 }
 
-// Hover para o logo (fora do escopo SCSS encapsulado)
 .jambox-logo:hover {
   transform: scale(1.05);
 }

@@ -1,23 +1,27 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-
-import { ListaUsuariosComponent } from './lista-usuarios/lista-usuarios.component';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { UsuariosRoutingModule } from './usuarios-routing.module';
-import { UsuariosComponent } from './usuarios.component';
+import { CadastroUsuarioComponent } from './cadastro-usuario/cadastro-usuario.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
-const routes: Routes = [
-  { path: '', component: ListaUsuariosComponent }
-];
 @NgModule({
   declarations: [
-    UsuariosComponent
+    CadastroUsuarioComponent
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     UsuariosRoutingModule,
-    RouterModule.forChild(routes)
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatSnackBarModule
   ]
 })
-export class UsuariosModule { }
+export class UsuariosModule {}
