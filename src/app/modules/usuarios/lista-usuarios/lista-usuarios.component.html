@@ -1,0 +1,20 @@
+<div class="p-4">
+    <h2 class="text-xl font-bold mb-4">Usuários</h2>
+    <table class="min-w-full bg-white rounded">
+      <thead>
+        <tr>
+          <th class="text-left px-4 py-2">Nome</th>
+          <th class="text-left px-4 py-2">Email</th>
+          <th class="text-left px-4 py-2">Perfil</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td class="px-4 py-2">{{ usuario.nome }}</td>
+          <td class="px-4 py-2">{{ usuario.email }}</td>
+          <td class="px-4 py-2">{{ usuario.tipoUsuario }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
