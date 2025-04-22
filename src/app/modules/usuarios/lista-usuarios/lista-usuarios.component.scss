@@ -4,14 +4,19 @@
 }
 
 .botao-filtro{
-    margin: 3%;
+    margin: 0.5%;
     background-color: rgb(236, 159, 65)!important;
 }
 .botao-novo{
+    margin: 0.5%;
     background-color: rgb(34, 173, 106)!important;
     ::ng-deep span {
         color: azure !important;
       }
+}
+.botao-limpar{
+    margin: 0.5%;
+    background-color: rgb(52, 39, 239)!important;
 }
 mat-form-field{
     margin:0.5%;

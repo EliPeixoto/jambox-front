@@ -5,6 +5,9 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { KeycloakInitService } from './services/keycloak-init.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -43,13 +46,18 @@ export function initializeKeycloak(keycloakService: KeycloakInitService): () => 
     MatSnackBarModule,
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     ReactiveFormsModule, 
     FormsModule,
     MatSidenavModule,
     MatListModule,
     MatIconModule,
     HttpClientModule,  
+    BrowserAnimationsModule,
+     ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+    }),
   ],
   providers: [
     KeycloakInitService,

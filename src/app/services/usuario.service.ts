@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environments';
@@ -19,13 +19,17 @@ export class UsuarioService {
     return this.http.post<Usuario>(this.apiUrl, usuario);
   }
 
-  buscarComFiltros(nome?: string, email?: string, cpf?: string): Observable<Usuario[]> {
-    const params: any = {};
-    if (nome) params.nome = nome;
-    if (email) params.email = email;
-    if (cpf) params.cpf = cpf;
-  
-    return this.http.get<Usuario[]>(`${this.apiUrl}/buscar`, { params });
+  buscarComFiltros(nome: string, email: string, cpf: string): Observable<HttpResponse<Usuario[]>> {
+    let params = new HttpParams();
+    if (nome) params = params.set('nome', nome);
+    if (email) params = params.set('email', email);
+    if (cpf) params = params.set('cpf', cpf);
+
+    return this.http.get<Usuario[]>(`${this.apiUrl}/buscar`, {
+      params,
+      observe: 'response'
+    });
   }
+  
   
 }
