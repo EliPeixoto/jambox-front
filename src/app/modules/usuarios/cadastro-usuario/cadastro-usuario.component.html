@@ -42,7 +42,7 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="usuarioForm.invalid">
-      Cadastrar
+      {{ modoEdicao ? 'Salvar Edição' : 'Cadastrar' }}
     </button>
     <div class="voltar-container">
       <button mat-button color="warn" (click)="voltar()">

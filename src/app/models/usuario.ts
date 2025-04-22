@@ -1,4 +1,5 @@
 export interface Usuario {
+    dataCriacao: any;
     id?: number;
     nome: string;
     email: string;

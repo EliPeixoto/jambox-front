@@ -12,7 +12,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ListaUsuariosComponent implements OnInit {
   usuarios: Usuario[] = [];
-  colunas: string[] = ['nome', 'email', 'cpf'];
+  colunas: string[] = ['nome', 'email', 'cpf', 'acoes'];
 
   filtros = {
     nome: '',
@@ -83,4 +83,14 @@ export class ListaUsuariosComponent implements OnInit {
   irParaCadastro(): void {
     this.router.navigate(['/usuarios/novo']);
   }
+
+  editarUsuario(id: number): void {
+    this.router.navigate(['/usuarios/editar', id]);
+  }
+  
+  excluirUsuario(id: number): void {
+    // Aqui você pode implementar a lógica futuramente
+    console.log('Excluir usuário ID:', id);
+  }
+  
 }

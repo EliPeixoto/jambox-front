@@ -1,27 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';                     // <-- IMPORTADO
-import { ToastrService } from 'ngx-toastr';    
+import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 
 @Component({
   selector: 'app-cadastro-usuario',
   templateUrl: './cadastro-usuario.component.html',
-  styleUrl: './cadastro-usuario.component.scss'
+  styleUrls: ['./cadastro-usuario.component.scss']
 })
-export class CadastroUsuarioComponent {
-  constructor(
-    private fb: FormBuilder,
-    private usuarioService: UsuarioService,
-    private router: Router,
-    private toastr: ToastrService
-  ) {} 
+export class CadastroUsuarioComponent implements OnInit {
+  usuarioId?: number;
+  modoEdicao = false;
 
   usuarioForm = this.fb.group({
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    cpf: ['', Validators.required],
+    cpf: [{ value: '', disabled: true }, Validators.required],
     tipoUsuario: ['', Validators.required],
     statusUsuario: ['ATIVO', Validators.required]
   });
@@ -32,26 +28,57 @@ export class CadastroUsuarioComponent {
     { value: 'CONVIDADO', viewValue: 'Convidado' }
   ];
 
- 
-  
-  onSubmit(): void {
-    const dados: Usuario = {
-      nome: this.usuarioForm.get('nome')?.value!,
-      email: this.usuarioForm.get('email')?.value!,
-      cpf: this.usuarioForm.get('cpf')?.value!,
-      tipoUsuario: this.usuarioForm.get('tipoUsuario')?.value!,
-      statusUsuario: 'ATIVO' 
-    };
+  constructor(
+    private fb: FormBuilder,
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private toastr: ToastrService,
+    private route: ActivatedRoute
+  ) {}
 
-    if (this.usuarioForm.valid) {
-      const dados: Usuario = {
-        nome: this.usuarioForm.get('nome')?.value!,
-        email: this.usuarioForm.get('email')?.value!,
-        cpf: this.usuarioForm.get('cpf')?.value!,
-        tipoUsuario: this.usuarioForm.get('tipoUsuario')?.value!,
-        statusUsuario: 'ATIVO'
-      };
-  
+  ngOnInit(): void {
+    const id = this.route.snapshot.paramMap.get('id');
+    if (id) {
+      this.usuarioId = +id;
+       this.modoEdicao = true;
+      this.carregarUsuario(this.usuarioId);
+    }
+  }
+
+  carregarUsuario(id: number): void {
+    this.usuarioService.buscarPorId(id).subscribe({
+      next: (usuario) => {
+        this.usuarioForm.patchValue(usuario);
+      },
+      error: () => {
+        this.toastr.error('Erro ao carregar usuário');
+        this.router.navigate(['/usuarios']);
+      }
+    });
+  }
+
+  onSubmit(): void {
+    if (this.usuarioForm.invalid) return;
+
+    const dados: Usuario = this.usuarioForm.value as Usuario;
+
+    if (this.modoEdicao && this.usuarioId) {
+
+        delete dados.id;
+        delete dados.dataCriacao;
+
+      // EDIÇÃO
+      this.usuarioService.editar(this.usuarioId, dados).subscribe({
+        next: () => {
+          this.toastr.success('Usuário atualizado com sucesso!');
+          this.router.navigate(['/usuarios']);
+        },
+        error: () => {
+          this.toastr.error('Erro ao atualizar usuário.');
+        }
+      });
+    } else {
+      // NOVO CADASTRO
       this.usuarioService.cadastrar(dados).subscribe({
         next: () => {
           this.toastr.success('Usuário cadastrado com sucesso!');
@@ -63,10 +90,8 @@ export class CadastroUsuarioComponent {
       });
     }
   }
-  
+
   voltar(): void {
     this.router.navigate(['/usuarios']);
   }
-  
-
 }

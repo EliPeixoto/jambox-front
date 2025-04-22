@@ -30,6 +30,14 @@ export class UsuarioService {
       observe: 'response'
     });
   }
+  editar(id: number, usuario: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/${id}`, usuario);
+  }
+  
+  buscarPorId(id: number): Observable<Usuario> {
+    return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
+  }
+  
   
   
 }
