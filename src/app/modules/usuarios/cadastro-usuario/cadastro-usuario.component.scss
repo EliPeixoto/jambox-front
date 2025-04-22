@@ -1,16 +1,52 @@
+.pagina-cadastro {
+  margin-top: 40px; // espaço no topo
+  text-align: center;
+}
+
+.titulo-cadastro {
+  background-color: #3665c9;
+  color: #ffffff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  padding: 14px 169px;
+  border-radius: 12px;
+  text-align: center;
+  width: fit-content;
+  margin: -26px auto 7px auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+
 .form-container {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    max-width: 500px;
-    margin: auto;
-    padding: 24px;
-    background: white;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  
-  .full-width {
-    width: 100%;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin: auto;
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.full-width {
+  width: 100%;
+}
+
+.voltar-container {
+  margin-top: 16px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.voltar-container button {
+  font-weight: bold;
+  font-size: 16px;
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+.mat-mdc-button:not(:disabled) {
+  color: #a29a99;
+}

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';                     // <-- IMPORTADO
+import { ToastrService } from 'ngx-toastr';    
 import { Usuario } from '../../../models/usuario';
 import { UsuarioService } from '../../../services/usuario.service';
 
@@ -13,7 +14,8 @@ export class CadastroUsuarioComponent {
   constructor(
     private fb: FormBuilder,
     private usuarioService: UsuarioService,
-    private snackBar: MatSnackBar
+    private router: Router,
+    private toastr: ToastrService
   ) {} 
 
   usuarioForm = this.fb.group({
@@ -29,20 +31,42 @@ export class CadastroUsuarioComponent {
     { value: 'MUSICO', viewValue: 'Músico' },
     { value: 'CONVIDADO', viewValue: 'Convidado' }
   ];
+
+ 
+  
   onSubmit(): void {
+    const dados: Usuario = {
+      nome: this.usuarioForm.get('nome')?.value!,
+      email: this.usuarioForm.get('email')?.value!,
+      cpf: this.usuarioForm.get('cpf')?.value!,
+      tipoUsuario: this.usuarioForm.get('tipoUsuario')?.value!,
+      statusUsuario: 'ATIVO' 
+    };
+
     if (this.usuarioForm.valid) {
-      const usuario = this.usuarioForm.value as Usuario;
-      this.usuarioService.cadastrar(usuario).subscribe({
+      const dados: Usuario = {
+        nome: this.usuarioForm.get('nome')?.value!,
+        email: this.usuarioForm.get('email')?.value!,
+        cpf: this.usuarioForm.get('cpf')?.value!,
+        tipoUsuario: this.usuarioForm.get('tipoUsuario')?.value!,
+        statusUsuario: 'ATIVO'
+      };
+  
+      this.usuarioService.cadastrar(dados).subscribe({
         next: () => {
-          this.snackBar.open('Usuário cadastrado com sucesso!', 'Fechar', { duration: 3000 });
-          this.usuarioForm.reset({ statusUsuario: 'ATIVO' });
+          this.toastr.success('Usuário cadastrado com sucesso!');
+          this.router.navigate(['/usuarios']);
         },
-        error: (err) => {
-          console.error(err);
-          this.snackBar.open('Erro ao cadastrar usuário.', 'Fechar', { duration: 3000 });
+        error: () => {
+          this.toastr.error('Erro ao cadastrar usuário.');
         }
       });
     }
   }
+  
+  voltar(): void {
+    this.router.navigate(['/usuarios']);
+  }
+  
 
 }

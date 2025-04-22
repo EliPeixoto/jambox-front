@@ -1,45 +1,54 @@
-<form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="form-container">
+<div class="pagina-cadastro">
+  <h2 class="titulo-cadastro">Cadastro de Usuário</h2>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Nome</mat-label>
-    <input matInput formControlName="nome" placeholder="Nome completo">
-    <mat-error *ngIf="usuarioForm.get('nome')?.hasError('required')">
-      Nome é obrigatório
-    </mat-error>
-  </mat-form-field>
+  <form [formGroup]="usuarioForm" (ngSubmit)="onSubmit()" class="form-container">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Nome</mat-label>
+      <input matInput formControlName="nome" placeholder="Nome completo">
+      <mat-error *ngIf="usuarioForm.get('nome')?.hasError('required')">
+        Nome é obrigatório
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Email</mat-label>
-    <input matInput formControlName="email" placeholder="email@exemplo.com">
-    <mat-error *ngIf="usuarioForm.get('email')?.hasError('required')">
-      Email é obrigatório
-    </mat-error>
-    <mat-error *ngIf="usuarioForm.get('email')?.hasError('email')">
-      Email inválido
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" placeholder="email@exemplo.com">
+      <mat-error *ngIf="usuarioForm.get('email')?.hasError('required')">
+        Email é obrigatório
+      </mat-error>
+      <mat-error *ngIf="usuarioForm.get('email')?.hasError('email')">
+        Email inválido
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>CPF</mat-label>
-    <input matInput formControlName="cpf" placeholder="000.000.000-00">
-    <mat-error *ngIf="usuarioForm.get('cpf')?.hasError('required')">
-      CPF é obrigatório
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>CPF</mat-label>
+      <input matInput formControlName="cpf" placeholder="000.000.000-00">
+      <mat-error *ngIf="usuarioForm.get('cpf')?.hasError('required')">
+        CPF é obrigatório
+      </mat-error>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Perfil</mat-label>
-    <mat-select formControlName="tipoUsuario">
-      <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
-        {{ tipo.viewValue }}
-      </mat-option>
-    </mat-select>
-    <mat-error *ngIf="usuarioForm.get('tipoUsuario')?.hasError('required')">
-      Perfil é obrigatório
-    </mat-error>
-  </mat-form-field>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Perfil</mat-label>
+      <mat-select formControlName="tipoUsuario">
+        <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+          {{ tipo.viewValue }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="usuarioForm.get('tipoUsuario')?.hasError('required')">
+        Perfil é obrigatório
+      </mat-error>
+    </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit" [disabled]="usuarioForm.invalid">
-    Cadastrar
-  </button>
-</form>
+    <button mat-raised-button color="primary" type="submit" [disabled]="usuarioForm.invalid">
+      Cadastrar
+    </button>
+    <div class="voltar-container">
+      <button mat-button color="warn" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+        Voltar
+      </button>
+    </div>
+  </form>
+</div>
