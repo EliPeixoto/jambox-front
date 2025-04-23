@@ -1,11 +1,25 @@
+*{
+  overflow: hidden;
+}
+.sidebar-wrapper {
+  background-color: #0c40af;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 0 !important;
+  border: none;
+
+ 
+}
+
+
 mat-sidenav-container {
   height: 100vh;
   overflow: hidden;
 }
 
 mat-sidenav {
-  width: 220px;
-  background-color: #0c40af;
+
+
   color: white;
   overflow: hidden;
 }

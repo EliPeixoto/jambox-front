@@ -1,6 +1,11 @@
 <mat-sidenav-container class="layout-container">
-  <mat-sidenav mode="side" opened>
-    <app-sidebar></app-sidebar>
+  <mat-sidenav
+    mode="side"
+    opened
+    [style.width.px]="isSidebarCollapsed ? 60 : 220"
+    class="sidebar-wrapper">
+    
+    <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed" (sidebarToggle)="toggleSidebar()"></app-sidebar>
   </mat-sidenav>
 
   <mat-sidenav-content>
