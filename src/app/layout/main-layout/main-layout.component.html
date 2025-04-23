@@ -5,7 +5,10 @@
     [style.width.px]="isSidebarCollapsed ? 60 : 220"
     class="sidebar-wrapper">
     
-    <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed" (sidebarToggle)="toggleSidebar()"></app-sidebar>
+    <app-sidebar [isSidebarCollapsed]="isSidebarCollapsed" 
+    (sidebarToggle)="toggleSidebar()"
+    (expandirMenu)="expandirSidebar()">
+    </app-sidebar>
   </mat-sidenav>
 
   <mat-sidenav-content>

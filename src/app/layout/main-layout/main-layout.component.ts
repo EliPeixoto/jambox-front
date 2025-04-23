@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
   selector: 'app-main-layout',
@@ -8,7 +9,17 @@ import { Component } from '@angular/core';
 export class MainLayoutComponent {
   isSidebarCollapsed = false;
 
+  @ViewChild(SidebarComponent) sidebarComponent!: SidebarComponent;
+
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;
+
+    if (this.isSidebarCollapsed) {
+      this.sidebarComponent.fecharBuscaManual();
+    }
+  }
+
+  expandirSidebar() {
+    this.isSidebarCollapsed = false;
   }
 }
