@@ -23,7 +23,7 @@
 
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>CPF</mat-label>
-      <input matInput formControlName="cpf" placeholder="000.000.000-00">
+      <input matInput formControlName="cpf" placeholder="000.000.000-00" [disabled]="modoEdicao">
       <mat-error *ngIf="usuarioForm.get('cpf')?.hasError('required')">
         CPF é obrigatório
       </mat-error>

@@ -3,6 +3,8 @@ import { UsuarioService } from '../../../services/usuario.service';
 import { Usuario } from '../../../models/usuario';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmarExclusaoComponent } from '../../../../app/shared/modals/confirmar-exclusao.component';
 
 
 @Component({
@@ -23,7 +25,8 @@ export class ListaUsuariosComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -91,6 +94,28 @@ export class ListaUsuariosComponent implements OnInit {
   excluirUsuario(id: number): void {
     // Aqui você pode implementar a lógica futuramente
     console.log('Excluir usuário ID:', id);
+  }
+
+  abrirConfirmacao(id: number): void {
+    const dialogRef = this.dialog.open(ConfirmarExclusaoComponent, {
+      width: '350px',
+      data: { id }
+    });
+  
+    dialogRef.afterClosed().subscribe(confirmado => {
+      if (confirmado) {
+        this.usuarioService.excluirUsuario(id).subscribe({
+          next: () => {
+            this.filtrar(); // recarrega a lista com filtros aplicados
+            this.toastr.success('Usuário excluído com sucesso! 👋', 'Sucesso');
+          },
+          error: (err) => {
+            this.toastr.error('Erro ao excluir o usuário.', 'Erro');
+            console.error(err);
+          }
+        });
+      }
+    });
   }
   
 }

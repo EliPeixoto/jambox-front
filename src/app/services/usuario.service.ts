@@ -1,8 +1,8 @@
 import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Usuario } from '../../app/models/usuario';
 import { environment } from '../../environments/environments';
-import{ Usuario} from '../../app/models/usuario'
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +38,9 @@ export class UsuarioService {
     return this.http.get<Usuario>(`${this.apiUrl}/${id}`);
   }
   
+  excluirUsuario(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  }
   
-  
+
 }

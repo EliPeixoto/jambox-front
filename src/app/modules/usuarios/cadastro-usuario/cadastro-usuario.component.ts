@@ -17,7 +17,7 @@ export class CadastroUsuarioComponent implements OnInit {
   usuarioForm = this.fb.group({
     nome: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    cpf: [{ value: '', disabled: true }, Validators.required],
+    cpf: ['', Validators.required],
     tipoUsuario: ['', Validators.required],
     statusUsuario: ['ATIVO', Validators.required]
   });
@@ -42,6 +42,7 @@ export class CadastroUsuarioComponent implements OnInit {
       this.usuarioId = +id;
        this.modoEdicao = true;
       this.carregarUsuario(this.usuarioId);
+      this.usuarioForm.get('cpf')?.disable();
     }
   }
 

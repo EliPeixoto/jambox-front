@@ -6,8 +6,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { KeycloakInitService } from './services/keycloak-init.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
-
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -26,6 +25,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainLayoutComponent } from './layout/main-layout/main-layout.component';
 import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { ConfirmarExclusaoComponent } from './../app/shared/modals/confirmar-exclusao.component';
 
 export function initializeKeycloak(keycloakService: KeycloakInitService): () => Promise<boolean> {
   return () => keycloakService.init();
@@ -36,7 +36,8 @@ export function initializeKeycloak(keycloakService: KeycloakInitService): () => 
     AppComponent,
     MainLayoutComponent,
     SidebarComponent,
-    DashboardComponent
+    DashboardComponent,
+    ConfirmarExclusaoComponent
   ],
   imports: [
     MatFormFieldModule,
@@ -53,11 +54,14 @@ export function initializeKeycloak(keycloakService: KeycloakInitService): () => 
     MatIconModule,
     HttpClientModule,  
     BrowserAnimationsModule,
+    MatDialogModule,
      ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
     }),
+    
+  
   ],
   providers: [
     KeycloakInitService,
