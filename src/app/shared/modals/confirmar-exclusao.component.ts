@@ -7,8 +7,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
     <h2 mat-dialog-title>Confirmar Exclusão</h2>
     <mat-dialog-content>Deseja realmente excluir este usuário?</mat-dialog-content>
     <mat-dialog-actions align="end">
-      <button mat-button color="warn"  (click)="fechar()">Cancelar</button>
-      <button mat-button color="primary" (click)="confirmar()">Confirmar</button>
+      <button mat-raised-button color="warn"  (click)="fechar()">Cancelar</button>
+      <button mat-raised-button color="primary" (click)="confirmar()">Confirmar</button>
     </mat-dialog-actions>
   `
 })
