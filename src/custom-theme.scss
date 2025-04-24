@@ -1,0 +1,92 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$jam-primary: mat.define-palette((
+  50:  #eef4ff,   // quase branco com toque azul
+  100: #d1e0ff,   // azul lavanda suave
+  200: #a8c5ff,   // azul bebê elegante
+  300: #7aa8ff,   // azul claro moderno
+  400: #518fff,   // azul base leve e versátil
+  500: #2c76ff,   // tom principal: vívido e clean
+  600: #1f5ed6,   // hover ideal
+  700: #154bb3,   // foco e elementos ativos
+  800: #103b8a,   // azul escuro institucional
+  900: #0a295c,   // quase navy blue, muito elegante
+  contrast: (
+    50:  black,
+    100: black,
+    200: black,
+    300: black,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+));
+
+
+
+$jam-warn: mat.define-palette((
+  50: #ffebee,
+  100: #ffcdd2,
+  200: #ef9a9a,
+  300: #e57373,
+  400: #ef5350,
+  500: #e53935, // sua cor principal
+  600: #d32f2f,
+  700: #c62828, // cor escura
+  800: #b71c1c,
+  900: #a50f15,
+  contrast: (
+    50: black,
+    100: black,
+    200: black,
+    300: black,
+    400: white,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+));
+
+$jam-accent: mat.define-palette((
+  50:  #fff3e0,
+  100: #ffe0b2,
+  200: #ffcc80,
+  300: #ffb74d,
+  400: #ffa726,
+  500: #ff9800, // tom principal
+  600: #fb8c00,
+  700: #f57c00,
+  800: #ef6c00,
+  900: #e65100,
+  contrast: (
+    50:  black,
+    100: black,
+    200: black,
+    300: black,
+    400: black,
+    500: black,
+    600: white,
+    700: white,
+    800: white,
+    900: white
+  )
+));
+
+
+$jam-theme: mat.define-light-theme((
+  color: (
+    primary: $jam-primary,
+    accent: $jam-accent,
+    warn: $jam-warn
+  )
+));
+
+
+@include mat.all-component-themes($jam-theme);
