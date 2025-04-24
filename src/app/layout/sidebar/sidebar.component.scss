@@ -173,6 +173,7 @@ a.mat-list-item {
 }
 
 .busca-item {
+  width: 90%;
   border: 1px solid #ffffff33;
   border-radius: 8px;
   padding: 0px 7px;
@@ -183,6 +184,9 @@ a.mat-list-item {
   display: flex;
   align-items: center;
   gap: 8px;
+  cursor: text;
+  box-sizing: border-box;
+  z-index: 1;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.1);

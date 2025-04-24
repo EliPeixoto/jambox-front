@@ -9,9 +9,18 @@
 
 <div class="busca-item" (click)="abrirBusca()">
   <mat-icon class="icones">search</mat-icon>
-  <input *ngIf="ativarBusca" #inputBusca type="text" class="input-busca" [(ngModel)]="valorBusca"
-    (click)="$event.stopPropagation()" />
+
+  <ng-container *ngIf="ativarBusca">
+<input
+  *ngIf="ativarBusca"
+  #inputBusca
+  type="text"
+  class="input-busca"
+  [(ngModel)]="valorBusca"
+/>
+  </ng-container>
 </div>
+
 
 <hr class="sidebar-divider" />
 
